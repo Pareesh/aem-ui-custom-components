@@ -33,13 +33,20 @@
                             action="${empty requestPathInfo.suffix ? &quot;/content/rating-component/data&quot; : requestPathInfo.suffix}">
                             <items
                                 jcr:primaryType="nt:unstructured">
-                                <rating
+                                <rating1
                                     jcr:primaryType="nt:unstructured"
                                     fieldLabel="Please rate the page"
                                     fieldDescription="This field is used to rate the page and determine how much you like it"
                                     sling:resourceType="/apps/pareesh/custom/component/rating"
-                                    maxRating="{Long}10"
-                                    name="./rating"/>
+                                    maxRating="{Long}5"
+                                    name="./rating1"/>
+                                <rating2
+                                        jcr:primaryType="nt:unstructured"
+                                        fieldLabel="Please rate the page"
+                                        fieldDescription="This field is used to rate the page and determine how much you like it"
+                                        sling:resourceType="/apps/pareesh/custom/component/rating"
+                                        maxRating="{Long}10"
+                                        name="./rating2"/>
                                 <submit
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/button"

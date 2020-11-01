@@ -73,7 +73,7 @@ attrs.add("name", name);
         %></div><%
     }
     %><input type="hidden" class = "foundation-field-related" name = <%= name %> value = <%= value %> />
-    <input type="hidden" name = <%= name + "/actualRating@TypeHint" %> value="Long" />
+    <input type="hidden" name = <%= name + "@TypeHint" %> value="Long" />
 </div>
 
 <ui:includeClientLib categories="component.rating,component.common"/>

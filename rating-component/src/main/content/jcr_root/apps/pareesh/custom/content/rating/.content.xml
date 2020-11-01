@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Custom Rating Component Page"
+        sling:resourceType="granite/ui/components/coral/foundation/page">
+        <head
+            jcr:primaryType="nt:unstructured">
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                categories="coralui3,granite.ui.coral.foundation"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/page/body">
+            <items
+                jcr:primaryType="nt:unstructured">
+                <container
+                    jcr:primaryType="nt:unstructured"
+                    granite:class="custom-component-container"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items
+                        jcr:primaryType="nt:unstructured">
+                        <form
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form"
+                            granite:class="custom-component-form"
+                            style="vertical"
+                            method="post"
+                            dataPath="${empty requestPathInfo.suffix ? &quot;/content/rating-component/data&quot; : requestPathInfo.suffix}"
+                            action="${empty requestPathInfo.suffix ? &quot;/content/rating-component/data&quot; : requestPathInfo.suffix}">
+                            <items
+                                jcr:primaryType="nt:unstructured">
+                                <rating
+                                    jcr:primaryType="nt:unstructured"
+                                    fieldLabel="Please rate the page"
+                                    fieldDescription="This field is used to rate the page and determine how much you like it"
+                                    sling:resourceType="/apps/pareesh/custom/component/rating"
+                                    maxRating="{Long}10"
+                                    name="./rating"/>
+                                <submit
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/button"
+                                    type="submit"
+                                    text="Submit"/>
+                            </items>
+                        </form>
+                    </items>
+                </container>
+            </items>
+        </body>
+    </jcr:content>
+</jcr:root>

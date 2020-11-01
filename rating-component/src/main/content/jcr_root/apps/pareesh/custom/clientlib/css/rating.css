@@ -1,0 +1,33 @@
+.rating-component {
+    display: flex;
+    width: fit-content;
+}
+
+.rating-component .rating-component-item {
+    width: 2rem;
+    height: 2rem;
+}
+
+.rating-component .rating-component-image {
+    max-width: 100%;
+    max-height: 100%;
+    background-size: cover;
+    content: url("/apps/pareesh/custom/clientlib/resource/star-default.png");
+}
+
+.rating-component .rating-component-item:not(:last-of-type) {
+    padding: 0.1rem;
+}
+
+.rating-component .rating-component-image[active],
+.rating-component .rating-component-image[active][selected]{
+    content: url("/apps/pareesh/custom/clientlib/resource/star-active.png");
+}
+
+.rating-component .rating-component-image[selected] {
+    content: url("/apps/pareesh/custom/clientlib/resource/star-selected.png");
+}
+
+.rating-component input{
+    display: none;
+}

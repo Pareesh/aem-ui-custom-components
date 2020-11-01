@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ======================================================================= -->
+    <!-- P R O J E C T                                                           -->
+    <!-- ======================================================================= -->
+    <groupId>com.pareesh.aem</groupId>
+    <artifactId>custom-ui-components</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>Custom UI Components</name>
+    <description>It contains the AEM UI custom components.</description>
+
+    <scm>
+        <connection>scm:git:git@github.com:Pareesh/aem-ui-custom-components.git</connection>
+        <developerConnection>scm:git:git@github.com:Pareesh/aem-ui-custom-components.git</developerConnection>
+        <url>https://github.com/Pareesh/aem-ui-custom-components.git</url>
+        <tag>HEAD</tag>
+    </scm>
+    <properties>
+        <source.directory>${project.basedir}/src/main/content/jcr_root</source.directory>
+    </properties>
+
+    <build>
+        <sourceDirectory>${source.directory}</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <version>1.1.4</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <packageType>application</packageType>
+                    <validatorsSettings>
+                        <jackrabbit-filter>
+                            <options>
+                                <validRoots>/apps/pareesh/custom/</validRoots>
+                            </options>
+                        </jackrabbit-filter>
+                    </validatorsSettings>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>generate-metadata</goal>
+                            <goal>analyze-classes</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>rating-component</module>
+    </modules>
+</project>

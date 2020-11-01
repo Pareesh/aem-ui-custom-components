@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <search
+        jcr:primaryType="nt:unstructured">
+        <views jcr:primaryType="nt:unstructured">
+            <list
+                granite:id="granite-ui-pathfield-picker-search-collection"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Card View"
+                sling:resourceType="granite/ui/components/coral/foundation/table"
+                icon="viewList"
+                limit="{Long}20"
+                sling:orderBefore="card"
+                selectionCount="${requestPathInfo.selectors[1]}"
+                selectionMode="{Boolean}true"
+                size="${empty requestPathInfo.selectors[3] ? &quot;20&quot; : requestPathInfo.selectors[3]}"
+                src="/mnt/overlay/granite/ui/content/coral/foundation/form/pathfield/picker/search/views/list.result.${requestPathInfo.selectors[1]}{.offset,limit}.html?${querystring}">
+                <columns jcr:primaryType="nt:unstructured">
+                    <select
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Icon"
+                        select="false"/>
+                    <name
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Name"
+                        sortable="{Boolean}true"/>
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Title"
+                        sortable="{Boolean}true"/>
+                    <created
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Path"/>
+                </columns>
+                <datasource
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/querybuilder/datasource"
+                    itemResourceType="/apps/granite/ui/component/picker/table/child/child.jsp"
+                    limit="${empty requestPathInfo.selectors[3] ? &quot;21&quot; : requestPathInfo.selectors[3] + 1}"
+                    offset="${requestPathInfo.selectors[2]}"/>
+            </list>
+        </views>
+    </search>
+</jcr:root>

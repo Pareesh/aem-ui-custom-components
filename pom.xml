@@ -62,5 +62,6 @@
 
     <modules>
         <module>rating-component</module>
+        <module>picker-listview-component</module>
     </modules>
 </project>

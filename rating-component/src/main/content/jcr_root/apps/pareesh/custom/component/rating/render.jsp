@@ -53,27 +53,25 @@ attrs.add("shape", shape);
 attrs.add("value", value);
 attrs.add("name", name);
 
-%><div <%= attrs.build() %> ><%
+%><ui:includeClientLib categories="component.rating,component.common"/>
+
+<div <%= attrs.build() %> ><%
 
     for(int index = 0; index < maxRating; index++) {
 
         AttrBuilder itemAttrs = new AttrBuilder(request, xssAPI);
         itemAttrs.addClass("rating-component-item");
         itemAttrs.add("data-index", index);
-        %><div <%= itemAttrs.build() %>><%
-            try {
-                if (value != null && index < Integer.parseInt(value)) {
-                    %><img class="rating-component-image" selected=""/><%
-                } else {
-                    %><img class="rating-component-image"/><%
-                }
-            } catch (Exception ignore) {
-                %><img class="rating-component-image"/><%
-            }
-        %></div><%
+        try {
+            itemAttrs.addSelected(value != null && index < Integer.parseInt(value));
+        } catch (Exception ignore) {
+            itemAttrs.addSelected(false);
+        }
+
+        %><div <%= itemAttrs.build() %>>
+        <img class="rating-component-image"/>
+        </div><%
     }
     %><input type="hidden" class = "foundation-field-related" name = <%= name %> value = <%= value %> />
     <input type="hidden" name = <%= name + "@TypeHint" %> value="Long" />
 </div>
-
-<ui:includeClientLib categories="component.rating,component.common"/>

@@ -15,20 +15,6 @@
         return result;
     }
 
-    function getNextAndNotCurrentSiblings(element, selector='*') {
-        var result = [];
-        var tempElement = element;
-
-        while (tempElement) {
-            if(element.matches(selector)) {
-                result.push(tempElement);
-            }
-            tempElement = tempElement.nextElementSibling;
-        }
-
-        return result;
-    }
-
     function click(event) {
         var target = event.currentTarget;
         if(!target) {
@@ -36,18 +22,19 @@
         }
 
         var container = target.closest(".rating-component");
-        var activeItems = getPreviousAndCurrentSiblings(target, ".rating-component-item");
-
-        container.querySelectorAll(".rating-component-item").forEach(function(item) {
-            var image = item.querySelector(".rating-component-image");
-            var isSelected = activeItems.includes(item);
-            image[isSelected ? "setAttribute" : "removeAttribute"]("selected", "");
-        });
+        var selectedItems = getPreviousAndCurrentSiblings(target, ".rating-component-item");
+        var input = container.querySelector(".foundation-field-related");
 
         clearAllActive(container);
 
-        var index = parseInt(target.dataset.index, 10) + 1;
-        container.querySelector(".foundation-field-related").value = index;
+        container.querySelectorAll(".rating-component-item").forEach(function(item) {
+            var isSelected = selectedItems.includes(item);
+            item[isSelected ? "setAttribute" : "removeAttribute"]("selected", "");
+        });
+
+        var index = target.dataset.index ? parseInt(target.dataset.index, 10) + 1 : 0;
+        input.value = index;
+
         clicked = true;
         requestAnimationFrame(function(){
             clicked = false;
@@ -66,23 +53,20 @@
         var activeItems = getPreviousAndCurrentSiblings(target, ".rating-component-item");
 
         container.querySelectorAll(".rating-component-item").forEach(function(item) {
-            var image = item.querySelector(".rating-component-image");
             var isActive = activeItems.includes(item);
-            image[isActive ? "setAttribute" : "removeAttribute"]("active", "");
+            item[isActive ? "setAttribute" : "removeAttribute"]("active", "");
         });
     }
 
     function clearAllActive(container) {
         container.querySelectorAll('.rating-component-item').forEach(item => {
-            var image = item.querySelector(".rating-component-image");
-            image.removeAttribute("active");
+            item.removeAttribute("active");
         });
     }
 
     function clearAllSelected(container) {
         container.querySelectorAll('.rating-component-item').forEach(item => {
-            var image = item.querySelector(".rating-component-image");
-            image.removeAttribute("selected");
+            item.removeAttribute("selected");
         });
     }
 
@@ -91,11 +75,18 @@
         clearAllActive(container);
     }
 
-    document.querySelectorAll('.rating-component').forEach(container => {
-        container.addEventListener('mouseleave', mouseleave);
-        container.querySelectorAll(".rating-component-item").forEach(item => {
-            item.addEventListener('mouseover', mouseover);
-            item.addEventListener('click', click);
+    $(document).on("foundation-contentloaded", function(event) {
+        var target = event.target;
+        target.querySelectorAll(".rating-component").forEach(container => {
+            container.querySelectorAll(".rating-component-item").forEach(item => {
+                item.addEventListener('mouseover', mouseover);
+                item.addEventListener('click', click);
+            });
+
+            // add eventlistener on whole container b/c remove all active item
+            // when mouse pointer is not within container
+            container.addEventListener('mouseleave', mouseleave);
         });
     });
+
 }(document))

@@ -1,6 +1,6 @@
 (function(document) {
 
-	var clicked;
+    var clicked;
     function getPreviousAndCurrentSiblings(element, selector='*') {
         var result = [];
         var tempElement = element;
@@ -32,7 +32,7 @@
     function click(event) {
         var target = event.currentTarget;
         if(!target) {
-			return;
+            return;
         }
 
         var container = target.closest(".rating-component");
@@ -50,15 +50,17 @@
         container.querySelector(".foundation-field-related").value = index;
         clicked = true;
         requestAnimationFrame(function(){
-			clicked = false;
+            clicked = false;
         });
     }
 
     function mouseover(event) {
         var target = event.currentTarget;
+        // sometime mouseover event gets executed just after clicking
+        // clicked is added to avoid this run.
         if(!target || clicked) {
             clicked = false;
-			return;
+            return;
         }
         var container = target.closest(".rating-component");
         var activeItems = getPreviousAndCurrentSiblings(target, ".rating-component-item");
@@ -73,25 +75,25 @@
     function clearAllActive(container) {
         container.querySelectorAll('.rating-component-item').forEach(item => {
             var image = item.querySelector(".rating-component-image");
-        	image.removeAttribute("active");
+            image.removeAttribute("active");
         });
     }
 
     function clearAllSelected(container) {
         container.querySelectorAll('.rating-component-item').forEach(item => {
             var image = item.querySelector(".rating-component-image");
-        	image.removeAttribute("selected");
+            image.removeAttribute("selected");
         });
     }
 
     function mouseleave(event) {
-		var container = event.currentTarget;
-		clearAllActive(container);
+        var container = event.currentTarget;
+        clearAllActive(container);
     }
 
     document.querySelectorAll('.rating-component').forEach(container => {
         container.addEventListener('mouseleave', mouseleave);
-		container.querySelectorAll(".rating-component-item").forEach(item => {
+        container.querySelectorAll(".rating-component-item").forEach(item => {
             item.addEventListener('mouseover', mouseover);
             item.addEventListener('click', click);
         });

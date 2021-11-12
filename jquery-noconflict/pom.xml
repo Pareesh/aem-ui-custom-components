@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ======================================================================= -->
+    <!-- P R O J E C T                                                           -->
+    <!-- ======================================================================= -->
+    <parent>
+        <groupId>com.pareesh.aem</groupId>
+        <artifactId>custom-ui-components</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>rating-component</artifactId>
+    <name>Rating Component</name>
+    <description>It contains the AEM UI custom rating component</description>
+
+    <properties>
+        <source.directory>${project.basedir}/rating-component/src/main/content/jcr_root</source.directory>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <!--<dependencies>
+                    <dependency>
+                        <groupId>com.pareesh.aem</groupId>
+                        <artifactId>custom-ui-components</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>-->
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--<dependencies>
+        <dependency>
+            <groupId>com.pareesh.aem</groupId>
+            <artifactId>custom-ui-components</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>-->
+</project>

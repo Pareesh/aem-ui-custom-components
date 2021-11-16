@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="2 Heading Page"
+        sling:resourceSuperType="/apps/pareesh/custom/content/base">
+        <body
+            jcr:primaryType="nt:unstructured">
+            <items
+                jcr:primaryType="nt:unstructured">
+                <container
+                    jcr:primaryType="nt:unstructured">
+                    <items
+                        jcr:primaryType="nt:unstructured">
+                        <h1 
+                            jcr:primaryType="nt:unstructured"
+                            text="This is the First Heading"
+                            level="1"/>
+                        <h2 
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/heading"
+                            text="This is the Second Heading"
+                            level="2"/>
+                    </items>
+                </container>
+            </items>
+        </body>
+    </jcr:content>
+</jcr:root>
